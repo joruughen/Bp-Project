@@ -1,4 +1,4 @@
-
+import {Button} from "../components/Button.jsx";
 
 
 export const Navbar = () => {
@@ -12,8 +12,10 @@ export const Navbar = () => {
                 </div>
             </div>
             <div className="bg-c2 p-4">
-                <div className="text-white">
-                    SI
+                <div>
+                    <Button message="Home" to="/home" textcolor="text-white"/>
+                    <Button message="Login" to="/auth/login" textcolor="text-white"/>
+                    <Button message="Register" to="/auth/register" textcolor="text-white"/>
                 </div>
             </div>
         </div>
