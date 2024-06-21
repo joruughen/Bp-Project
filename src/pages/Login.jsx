@@ -1,9 +1,10 @@
+import LogInForm from "../components/LogInForm.jsx";
 
 export const Login = () => {
 
     return (
-        <div>
-            aaaaaaaa
-        </div>
+        <LogInForm>
+
+        </LogInForm>
     )
 };
