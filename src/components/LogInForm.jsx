@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {fetchLogin} from "../services/api.js";
-import {useNavigate} from "react-router-dom";
-
 
 export default function LogInForm() {
     const [formData, setFormData] = useState({
@@ -9,19 +8,35 @@ export default function LogInForm() {
         password: ''
     });
 
-    const handleChange = (entrada) => {
-        const {llave, valor} = entrada.target;
-        console.log(entrada.target);
+    const navigate = useNavigate();
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
         setFormData({
             ...formData,
-            [llave]: valor,
-        })
-    }
-    const handleSubmit = (entrada) => {
-        console.log(entrada);
-    }
+            [name]: value,
+        });
+    };
 
-    return(
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log('Form Data:', formData);
+        try {
+            console.log('Form Data:', formData);
+            const response = await fetchLogin(formData);
+            console.log('Form Data:', formData);
+            // Manejar la respuesta de inicio de sesión aquí
+            if (response.status === 200) {
+                console.log('Form Data:', formData);
+                console.log('Hola')
+            }
+        } catch (error) {
+
+            console.error("Error en el inicio de sesión:", error);
+        }
+    };
+
+    return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -97,5 +112,5 @@ export default function LogInForm() {
                 </div>
             </div>
         </>
-    )
+    );
 }
